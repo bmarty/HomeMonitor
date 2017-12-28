@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -16,12 +17,13 @@ class MainActivity : AppCompatActivity() {
     private var keyPhone: String = "KEY_PHONE"
     private var keyMode: String = "KEY_MODE"
 
-    private var keyModeServer: String = "KEY_MODE_SERVER"
-    private var keyModeClient: String = "KEY_MODE_CLIENT"
+    private var keyModeStopped: String = "STOPPED"
+    private var keyModeServerStarted: String = "SERVER_STARTED"
+    private var keyModeClientStarted: String = "CLIENT_STARTED"
 
 
-    @BindView(R.id.main_phone)
-    lateinit var mPhone: EditText
+    @BindView(R.id.main_mode) lateinit var mMode: TextView
+    @BindView(R.id.main_phone) lateinit var mPhone: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,24 +36,28 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        mPhone.setText(getPref().getString(keyPhone, "0651547677"))
+        updateUi()
     }
+
 
     // UI Event
 
     @OnClick(R.id.main_start_client)
     fun startClient() {
-
+        getPref().edit().putString(keyMode, keyModeClientStarted).apply()
+        updateUi()
     }
 
-    @OnClick(R.id.main_start_client)
+    @OnClick(R.id.main_start_server)
     fun startServer() {
-
+        getPref().edit().putString(keyMode, keyModeServerStarted).apply()
+        updateUi()
     }
 
     @OnClick(R.id.main_stop)
     fun stop() {
-        getPref().edit().remove(keyMode)
+        getPref().edit().remove(keyMode).apply()
+        updateUi()
     }
 
     @OnTextChanged(R.id.main_phone)
@@ -63,5 +69,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun getPref(): SharedPreferences {
         return getSharedPreferences("default", Context.MODE_PRIVATE)
+    }
+
+    private fun updateUi() {
+        mMode.text = getPref().getString(keyMode, keyModeStopped)
+        mPhone.setText(getPref().getString(keyPhone, "0651547677"))
     }
 }
