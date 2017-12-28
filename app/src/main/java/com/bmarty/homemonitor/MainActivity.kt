@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.telephony.SmsManager
 import android.widget.EditText
 import android.widget.TextView
 import butterknife.BindView
@@ -58,6 +59,14 @@ class MainActivity : AppCompatActivity() {
     fun stop() {
         getPref().edit().remove(keyMode).apply()
         updateUi()
+    }
+
+    @OnClick(R.id.main_test_sms)
+    fun testSms() {
+        val smsManager: SmsManager = SmsManager.getDefault()
+
+
+        smsManager.sendTextMessage(mPhone.text.toString(), null, "test", null, null)
     }
 
     @OnTextChanged(R.id.main_phone)
