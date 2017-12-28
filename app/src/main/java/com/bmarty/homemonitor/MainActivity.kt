@@ -13,6 +13,9 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.OnTextChanged
 import com.tbruyelle.rxpermissions2.RxPermissions
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,9 +28,20 @@ class MainActivity : AppCompatActivity() {
 
 
     @BindView(R.id.main_mode) lateinit var mMode: TextView
+    @BindView(R.id.main_event) lateinit var mEvent: TextView
     @BindView(R.id.main_phone) lateinit var mPhone: EditText
 
     private lateinit var mRxPermissions: RxPermissions
+
+    public override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    public override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +68,12 @@ class MainActivity : AppCompatActivity() {
         updateUi()
     }
 
+    // Bus event
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: ChargerEvent) {
+        mEvent.text = "Event: " + event.intentAction;
+    }
 
     // UI Event
 
