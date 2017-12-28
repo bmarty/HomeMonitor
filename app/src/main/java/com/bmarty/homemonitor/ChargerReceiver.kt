@@ -9,9 +9,15 @@ import org.greenrobot.eventbus.EventBus
 class ChargerReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        Log.w("TAG", "Charger info received: " + intent?.action);
+        if (intent == null || context == null) {
+            return
+        }
 
-        EventBus.getDefault().post(ChargerEvent(intent?.action!!))
+        Log.w("TAG", "Charger info received: " + intent.action);
+
+        EventBus.getDefault().post(ChargerEvent(intent.action))
+
+        sendServerSms(context, intent.action)
     }
 
 }
