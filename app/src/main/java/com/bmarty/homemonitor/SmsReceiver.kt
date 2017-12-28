@@ -11,7 +11,7 @@ import org.greenrobot.eventbus.EventBus
 class SmsReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (intent == null) {
+        if (intent == null || context == null) {
             return
         }
 
@@ -24,6 +24,14 @@ class SmsReceiver : BroadcastReceiver() {
 
         if (smsMessage.messageBody.startsWith(smsTag)) {
             // It's for me
+
+            if (amIServer(context)) {
+                if (smsMessage.messageBody.endsWith(smsGetStatus)) {
+                    sendCurrentStatus(context)
+                }
+            }
+
+            // TODO This does not work
             abortBroadcast()
         }
     }

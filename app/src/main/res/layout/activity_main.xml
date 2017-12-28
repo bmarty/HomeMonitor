@@ -48,8 +48,8 @@
         android:text="Stop"/>
 
     <Button
-        android:id="@+id/main_test_sms"
+        android:id="@+id/main_get_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test SMS"/>
+        android:text="Get status"/>
 </LinearLayout>

@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
 
         mRxPermissions
                 .request(Manifest.permission.SEND_SMS,
-                        Manifest.permission.RECEIVE_SMS)
+                        Manifest.permission.RECEIVE_SMS,
+                        Manifest.permission.READ_PHONE_STATE)
                 .subscribe({ granted ->
                     if (!granted) {
                         finish()
@@ -89,9 +90,9 @@ class MainActivity : AppCompatActivity() {
         updateUi()
     }
 
-    @OnClick(R.id.main_test_sms)
-    fun testSms() {
-        sendSms(this, "test")
+    @OnClick(R.id.main_get_status)
+    fun getSatus() {
+        sendClientSms(this, smsGetStatus)
     }
 
     @OnTextChanged(R.id.main_phone)
