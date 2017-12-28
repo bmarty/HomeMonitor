@@ -1,5 +1,6 @@
 package com.bmarty.homemonitor
 
+import android.Manifest
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -11,7 +12,9 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.OnTextChanged
+import com.tbruyelle.rxpermissions2.RxPermissions
 import homemonitor.bmarty.com.homemonitor.R
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,12 +29,24 @@ class MainActivity : AppCompatActivity() {
     @BindView(R.id.main_mode) lateinit var mMode: TextView
     @BindView(R.id.main_phone) lateinit var mPhone: EditText
 
+    private lateinit var mRxPermissions: RxPermissions
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
         ButterKnife.bind(this)
+
+        mRxPermissions = RxPermissions(this)
+
+        mRxPermissions
+                .request(Manifest.permission.SEND_SMS)
+                .subscribe({ granted ->
+                    if (!granted) {
+                        finish()
+                    }
+                })
     }
 
     override fun onResume() {
@@ -64,8 +79,6 @@ class MainActivity : AppCompatActivity() {
     @OnClick(R.id.main_test_sms)
     fun testSms() {
         val smsManager: SmsManager = SmsManager.getDefault()
-
-
         smsManager.sendTextMessage(mPhone.text.toString(), null, "test", null, null)
     }
 
