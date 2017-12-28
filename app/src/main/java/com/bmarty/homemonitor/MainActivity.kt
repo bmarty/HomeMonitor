@@ -13,8 +13,6 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.OnTextChanged
 import com.tbruyelle.rxpermissions2.RxPermissions
-import homemonitor.bmarty.com.homemonitor.R
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         mRxPermissions = RxPermissions(this)
 
         mRxPermissions
-                .request(Manifest.permission.SEND_SMS)
+                .request(Manifest.permission.SEND_SMS,
+                        Manifest.permission.READ_SMS)
                 .subscribe({ granted ->
                     if (!granted) {
                         finish()
