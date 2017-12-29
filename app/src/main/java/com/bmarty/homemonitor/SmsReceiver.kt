@@ -16,10 +16,12 @@ class SmsReceiver : BroadcastReceiver() {
             return
         }
 
-        Log.w("TAG", "Sms received: " + intent.action)
-
         val msgs = Telephony.Sms.Intents.getMessagesFromIntent(intent)
         val smsMessage = msgs[0]
+
+        Log.w("TAG", "Sms received: " + intent.action)
+        Log.w("TAG", "Sms received: " + smsMessage.messageBody)
+        Log.w("TAG", "Sms received: " + smsMessage.originatingAddress)
 
         if (smsMessage.messageBody.startsWith("{")) {
 
