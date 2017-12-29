@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:layout_margin="20dp"
               android:orientation="vertical">
 
     <TextView
+        android:id="@+id/second_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Phone number of distant phone:"/>
+        android:gravity="center"
+        android:padding="16dp"
+        tools:text="0611223344"/>
 
-    <EditText
-        android:id="@+id/main_phone"
+    <TextView
+        android:id="@+id/second_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone"
-        android:inputType="phone"/>
-
-    <Button
-        android:id="@+id/main_start_client"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start Client"/>
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        tools:text="Event"/>
 
     <Button
-        android:id="@+id/main_start_server"
+        android:id="@+id/second_stop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start server"/>
+        android:text="Stop"/>
 
+    <Button
+        android:id="@+id/server_send_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send status"/>
+
+    <Button
+        android:id="@+id/server_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Call"/>
 </LinearLayout>

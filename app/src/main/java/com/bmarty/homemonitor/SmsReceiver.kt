@@ -32,9 +32,6 @@ class SmsReceiver : BroadcastReceiver() {
                     call(context)
                 }
             }
-
-            // TODO This does not work
-            abortBroadcast()
         }
     }
 

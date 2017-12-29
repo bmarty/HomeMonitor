@@ -20,6 +20,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ClientActivity"
+            android:label="Client"/>
+
+        <activity
+            android:name=".ServerActivity"
+            android:label="Server"/>
 
         <receiver android:name=".ChargerReceiver">
             <intent-filter>
