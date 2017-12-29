@@ -2,24 +2,12 @@ package com.bmarty.homemonitor
 
 import android.content.Context
 import android.telephony.SmsManager
+import com.google.gson.Gson
 
-fun sendServerSms(context: Context,
-                  text: String) {
-    if (amIServer(context)) {
-        sendSms(context, text)
-    }
-}
-
-fun sendClientSms(context: Context,
-                  text: String) {
-    if (amIClient(context)) {
-        sendSms(context, text)
-    }
-}
-
-private fun sendSms(context: Context,
-            text: String) {
+fun sendSms(context: Context,
+            message: Message,
+            number: String = getDistantPhoneNumber(context)) {
     val smsManager: SmsManager = SmsManager.getDefault()
-    smsManager.sendTextMessage(getPhoneNumber(context), null, smsTag + text, null, null)
+    smsManager.sendTextMessage(number, null, Gson().toJson(message), null, null)
 }
 

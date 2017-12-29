@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         ButterKnife.bind(this)
 
-        mPhone.setText(getPhoneNumber(this))
+        mPhone.setText(getDistantPhoneNumber(this))
 
         RxPermissions(this)
                 .request(Manifest.permission.SEND_SMS,

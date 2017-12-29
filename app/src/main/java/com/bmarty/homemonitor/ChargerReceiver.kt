@@ -13,11 +13,16 @@ class ChargerReceiver : BroadcastReceiver() {
             return
         }
 
+        if (!amIServer(context)) {
+            return
+        }
+
         Log.w("TAG", "Charger info received: " + intent.action);
 
         EventBus.getDefault().post(ChargerEvent(intent.action))
 
-        sendServerSms(context, intent.action)
+        // Send SMS to the configured client
+        sendSms(context, Message(false, typeCharger, intent.action))
     }
 
 }

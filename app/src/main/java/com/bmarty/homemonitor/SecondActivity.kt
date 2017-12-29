@@ -34,7 +34,7 @@ abstract class SecondActivity : AppCompatActivity() {
 
         ButterKnife.bind(this)
 
-        mPhone.setText(getPhoneNumber(this))
+        mPhone.setText(getDistantPhoneNumber(this))
     }
 
     @LayoutRes abstract fun getLayoutRes(): Int

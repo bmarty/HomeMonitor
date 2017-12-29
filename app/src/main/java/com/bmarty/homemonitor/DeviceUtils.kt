@@ -6,7 +6,8 @@ import android.content.IntentFilter
 import android.os.BatteryManager
 
 
-fun sendCurrentStatus(context: Context) {
+fun sendCurrentStatus(context: Context,
+                      number: String = getDistantPhoneNumber(context)) {
     // Charge and battery status
     val intent: Intent = context.applicationContext.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
 
@@ -18,7 +19,6 @@ fun sendCurrentStatus(context: Context) {
     }
 
     val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-    val plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
 
     val statusStr = "Battery status: " +
             when (status) {
@@ -30,15 +30,7 @@ fun sendCurrentStatus(context: Context) {
                 else -> "Other: " + status.toString()
             }
 
-    val pluggedStr = "Battery plugged: " +
-            when (plugged) {
-                BatteryManager.BATTERY_PLUGGED_AC -> "AC"
-                BatteryManager.BATTERY_PLUGGED_USB -> "USB"
-                BatteryManager.BATTERY_PLUGGED_WIRELESS -> "Wireless"
-                else -> "Other: " + plugged.toString()
-            }
-
-    sendServerSms(context, "$statusStr. $pluggedStr. Battery level: $level%")
+    sendSms(context, Message(false, typeStatus, "$statusStr. Battery level: $level%"), number)
 
     // Other?
 }
