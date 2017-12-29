@@ -17,7 +17,7 @@ class ChargerReceiver : BroadcastReceiver() {
             return
         }
 
-        Log.w("TAG", "Charger info received: " + intent.action);
+        Log.w("TAG", "Charger info received: " + intent.action)
 
         EventBus.getDefault().post(ChargerEvent(intent.action))
 

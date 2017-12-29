@@ -32,15 +32,26 @@ class SmsReceiver : BroadcastReceiver() {
 
             if (amIServer(context) && message.fromClient) {
                 // We received a message form the client or any other number. Answer to the caller TODO if on the white list?
-                var callerNumber = smsMessage.originatingAddress
+                val callerNumber = smsMessage.originatingAddress
 
-                if (message.type == typeGetStatus) {
-                    sendCurrentStatus(context, callerNumber)
-                } else if (message.type == typeGetCalled) {
-                    call(context, callerNumber)
+                when (message.type) {
+                    typeGetStatus -> sendCurrentStatus(context, callerNumber)
+                    typeGetCalled -> call(context, callerNumber)
+                    else -> {
+                        // Should not happen
+                    }
                 }
             } else if (amIClient(context) && !message.fromClient) {
-                //
+                // We receive a message form the server
+                when (message.type) {
+                    typeCharger -> showChargerEventNotification(context, message.info)
+                    typeStatus -> {
+                        // TODO
+                    }
+                    else -> {
+                        // Should not happen
+                    }
+                }
             }
         }
     }
