@@ -54,8 +54,8 @@
         android:text="Get status"/>
 
     <Button
-        android:id="@+id/main_call"
+        android:id="@+id/main_get_called"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Call"/>
+        android:text="Get called"/>
 </LinearLayout>

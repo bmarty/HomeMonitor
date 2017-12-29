@@ -96,9 +96,9 @@ class MainActivity : AppCompatActivity() {
         sendClientSms(this, smsGetStatus)
     }
 
-    @OnClick(R.id.main_call)
-    fun call() {
-        call(this)
+    @OnClick(R.id.main_get_called)
+    fun getCalled() {
+        sendClientSms(this, smsGetCalled)
     }
 
     // TODO It is hard to answer automatically to a call but we can send an SMS to be called back!

@@ -15,7 +15,7 @@ class SmsReceiver : BroadcastReceiver() {
             return
         }
 
-        Log.w("TAG", "Sms received: " + intent.action);
+        Log.w("TAG", "Sms received: " + intent.action)
 
         val msgs = Telephony.Sms.Intents.getMessagesFromIntent(intent)
         val smsMessage = msgs[0]
@@ -28,6 +28,8 @@ class SmsReceiver : BroadcastReceiver() {
             if (amIServer(context)) {
                 if (smsMessage.messageBody.endsWith(smsGetStatus)) {
                     sendCurrentStatus(context)
+                } else if (smsMessage.messageBody.endsWith(smsGetCalled)) {
+                    call(context)
                 }
             }
 

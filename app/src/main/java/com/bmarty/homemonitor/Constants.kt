@@ -2,6 +2,7 @@ package com.bmarty.homemonitor
 
 val smsTag: String = "[HM] "
 val smsGetStatus: String = "GET STATUS"
+val smsGetCalled: String = "GET CALLED"
 
 var keyPhone: String = "KEY_PHONE"
 var defaultPhone: String = "0651547677"
