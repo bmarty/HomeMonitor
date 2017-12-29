@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity() {
         mRxPermissions
                 .request(Manifest.permission.SEND_SMS,
                         Manifest.permission.RECEIVE_SMS,
-                        Manifest.permission.READ_PHONE_STATE)
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.CALL_PHONE)
                 .subscribe({ granted ->
                     if (!granted) {
                         finish()
@@ -94,6 +95,13 @@ class MainActivity : AppCompatActivity() {
     fun getSatus() {
         sendClientSms(this, smsGetStatus)
     }
+
+    @OnClick(R.id.main_call)
+    fun call() {
+        call(this)
+    }
+
+    // TODO It is hard to answer automatically to a call but we can send an SMS to be called back!
 
     @OnTextChanged(R.id.main_phone)
     fun onPhoneChange() {

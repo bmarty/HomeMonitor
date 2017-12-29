@@ -15,3 +15,7 @@ fun amIServer(context: Context): Boolean {
 fun amIClient(context: Context): Boolean {
     return getPref(context).getString(keyMode, keyModeStopped).equals(keyModeClientStarted)
 }
+
+fun getPhoneNumber(context: Context): String {
+    return getPref(context).getString(keyPhone, defaultPhone)
+}

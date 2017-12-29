@@ -23,6 +23,3 @@ private fun sendSms(context: Context,
     smsManager.sendTextMessage(getPhoneNumber(context), null, smsTag + text, null, null)
 }
 
-fun getPhoneNumber(context: Context): String {
-    return getPref(context).getString(keyPhone, defaultPhone)
-}
