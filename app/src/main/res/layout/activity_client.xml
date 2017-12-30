@@ -23,12 +23,6 @@
         tools:text="Event"/>
 
     <Button
-        android:id="@+id/second_stop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stop"/>
-
-    <Button
         android:id="@+id/client_get_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

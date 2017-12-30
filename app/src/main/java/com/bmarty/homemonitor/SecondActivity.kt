@@ -4,13 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
-import butterknife.OnClick
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+
 
 abstract class SecondActivity : AppCompatActivity() {
 
@@ -37,6 +39,22 @@ abstract class SecondActivity : AppCompatActivity() {
         mPhone.setText(getDistantPhoneNumber(this))
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.second, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.menu_quit) {
+            getPref(this).edit().remove(keyMode).apply()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
     @LayoutRes abstract fun getLayoutRes(): Int
 
     // Bus event
@@ -49,14 +67,5 @@ abstract class SecondActivity : AppCompatActivity() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: SmsEvent) {
         mEvent.text = "Sms: " + event.intentAction + " " + event.smsContent
-    }
-
-    // UI Event
-
-    @OnClick(R.id.second_stop)
-    fun stop() {
-        getPref(this).edit().remove(keyMode).apply()
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
     }
 }
