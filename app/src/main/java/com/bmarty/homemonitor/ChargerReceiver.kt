@@ -13,6 +13,8 @@ class ChargerReceiver : BroadcastReceiver() {
             return
         }
 
+        saveLastChargerStatus(context, intent.action)
+
         if (!amIServer(context)) {
             return
         }
@@ -22,7 +24,7 @@ class ChargerReceiver : BroadcastReceiver() {
         EventBus.getDefault().post(ChargerEvent(intent.action))
 
         // Send SMS to the configured client
-        sendSms(context, Message(false, typeCharger, intent.action))
+        sendSms(context, Message(false, typeCharger, intent.action, null, null, null, null))
     }
 
 }

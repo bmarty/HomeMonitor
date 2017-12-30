@@ -3,8 +3,8 @@ package com.bmarty.homemonitor
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.location.LocationManager
 import android.os.BatteryManager
-
 
 fun sendCurrentStatus(context: Context,
                       number: String = getDistantPhoneNumber(context)) {
@@ -13,24 +13,36 @@ fun sendCurrentStatus(context: Context,
 
     val rawlevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
     val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
-    var level = -1
+    var batteryLevel = -1
     if (rawlevel >= 0 && scale > 0) {
-        level = rawlevel * 100 / scale
+        batteryLevel = rawlevel * 100 / scale
     }
 
-    val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+    val batteryStatus = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
 
-    val statusStr = "Battery status: " +
-            when (status) {
-                BatteryManager.BATTERY_STATUS_CHARGING -> "Charging"
-                BatteryManager.BATTERY_STATUS_DISCHARGING -> "Discharging"
-                BatteryManager.BATTERY_STATUS_FULL -> "Full"
-                BatteryManager.BATTERY_STATUS_NOT_CHARGING -> "Not charging"
-                BatteryManager.BATTERY_STATUS_UNKNOWN -> "Unknown"
-                else -> "Other: " + status.toString()
-            }
+    /*
+        BatteryManager.BATTERY_STATUS_CHARGING -> "Charging"
+        BatteryManager.BATTERY_STATUS_DISCHARGING -> "Discharging"
+        BatteryManager.BATTERY_STATUS_FULL -> "Full"
+        BatteryManager.BATTERY_STATUS_NOT_CHARGING -> "Not charging"
+        BatteryManager.BATTERY_STATUS_UNKNOWN -> "Unknown"
+    */
 
-    sendSms(context, Message(false, typeStatus, "$statusStr. Battery level: $level%"), number)
+    // Get latitude and longitude
+    val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    val location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+    val latitude = location?.latitude
+    val longitude = location?.longitude
 
     // Other?
+    val message = Message(false,
+            typeStatus,
+            getLastChargerStatus(context),
+            batteryStatus,
+            batteryLevel,
+            latitude,
+            longitude)
+
+    sendSms(context, message, number)
 }

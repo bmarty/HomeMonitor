@@ -1,6 +1,7 @@
 package com.bmarty.homemonitor
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 
 
@@ -18,4 +19,12 @@ fun amIClient(context: Context): Boolean {
 
 fun getDistantPhoneNumber(context: Context): String {
     return getPref(context).getString(keyPhone, defaultPhone)
+}
+
+fun saveLastChargerStatus(context: Context, status: String) {
+    getPref(context).edit().putString(keyLastChargerStatus, status)
+}
+
+fun getLastChargerStatus(context: Context): String {
+    return getPref(context).getString(keyLastChargerStatus, Intent.ACTION_POWER_DISCONNECTED)
 }

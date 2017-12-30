@@ -10,10 +10,4 @@ var keyModeStopped = "STOPPED"
 var keyModeServerStarted = "SERVER_STARTED"
 var keyModeClientStarted = "CLIENT_STARTED"
 
-// Type from client
-val typeGetStatus = "GET STATUS"
-val typeGetCalled = "GET CALLED"
-
-// Type from server
-var typeCharger = "CHARGER"
-var typeStatus = "STATUS"
+var keyLastChargerStatus = "KEY_LAST_CHARGER_STATUS"

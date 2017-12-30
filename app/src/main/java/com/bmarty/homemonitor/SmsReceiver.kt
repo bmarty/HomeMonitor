@@ -46,7 +46,7 @@ class SmsReceiver : BroadcastReceiver() {
             } else if (amIClient(context) && !message.fromClient) {
                 // We receive a message form the server
                 when (message.type) {
-                    typeCharger -> showChargerEventNotification(context, message.info)
+                    typeCharger -> showChargerEventNotification(context, message.chargerStatus!!)
                     typeStatus -> {
                         // TODO
                     }

@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
                 .request(Manifest.permission.SEND_SMS,
                         Manifest.permission.RECEIVE_SMS,
                         Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.CALL_PHONE)
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
                 .subscribe({ granted ->
                     if (!granted) {
                         finish()

@@ -12,11 +12,11 @@ class ClientActivity : SecondActivity() {
 
     @OnClick(R.id.client_get_status)
     fun getStatus() {
-        sendSms(this, Message(true, typeGetStatus, ""))
+        sendSms(this, createClientMessage(typeGetStatus))
     }
 
     @OnClick(R.id.client_get_called)
     fun getCalled() {
-        sendSms(this, Message(true, typeGetCalled, ""))
+        sendSms(this, createClientMessage(typeGetCalled))
     }
 }
