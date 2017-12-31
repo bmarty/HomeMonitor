@@ -17,7 +17,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 
-abstract class SecondActivity : AppCompatActivity() {
+abstract class SecondActivity : AbstractActivity() {
 
     @BindView(R.id.second_event) lateinit var mEvent: TextView
     @BindView(R.id.second_phone) lateinit var mPhone: TextView

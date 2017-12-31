@@ -12,7 +12,7 @@ import butterknife.OnTextChanged
 import com.bmarty.homemonitor.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AbstractActivity() {
 
     @BindView(R.id.main_phone) lateinit var mPhone: EditText
 
