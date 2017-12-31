@@ -1,4 +1,4 @@
-package com.bmarty.homemonitor
+package com.bmarty.homemonitor.ui
 
 import android.Manifest
 import android.content.Intent
@@ -9,6 +9,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.OnTextChanged
+import com.bmarty.homemonitor.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 
 class MainActivity : AppCompatActivity() {

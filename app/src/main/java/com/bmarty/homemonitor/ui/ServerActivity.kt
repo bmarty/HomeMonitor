@@ -1,6 +1,8 @@
-package com.bmarty.homemonitor
+package com.bmarty.homemonitor.ui
 
 import butterknife.OnClick
+import com.bmarty.homemonitor.R
+import com.bmarty.homemonitor.sendCurrentStatus
 
 class ServerActivity : SecondActivity() {
 
@@ -17,6 +19,6 @@ class ServerActivity : SecondActivity() {
 
     @OnClick(R.id.server_call)
     fun call() {
-        call(this)
+        com.bmarty.homemonitor.call(this)
     }
 }

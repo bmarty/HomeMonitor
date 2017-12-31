@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.media.RingtoneManager
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
+import com.bmarty.homemonitor.receiver.intToChargerIntent
 
 
 fun showChargerEventNotification(context: Context,

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.location.LocationManager
 import android.os.BatteryManager
+import com.bmarty.homemonitor.data.Message
+import com.bmarty.homemonitor.data.typeStatus
 
 fun sendCurrentStatus(context: Context,
                       number: String = getDistantPhoneNumber(context)) {

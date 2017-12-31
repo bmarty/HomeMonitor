@@ -1,6 +1,5 @@
-package com.bmarty.homemonitor
+package com.bmarty.homemonitor.ui
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
@@ -10,6 +9,9 @@ import android.view.MenuItem
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.bmarty.homemonitor.*
+import com.bmarty.homemonitor.data.ChargerEvent
+import com.bmarty.homemonitor.data.SmsEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

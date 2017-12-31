@@ -1,1 +1,5 @@
 # HomeMonitor
+
+# TODO
+
+Mode alone
