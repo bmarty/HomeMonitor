@@ -55,18 +55,19 @@ class MainActivity : AppCompatActivity() {
 
     @OnClick(R.id.main_start_client)
     fun startClient() {
-        getPref(this).edit().putString(keyMode, keyModeClientStarted).apply()
+        changeMode(this, keyModeClientStarted)
         redirect()
     }
 
     @OnClick(R.id.main_start_server)
     fun startServer() {
-        getPref(this).edit().putString(keyMode, keyModeServerStarted).apply()
+        changeMode(this, keyModeClientStarted)
         redirect()
     }
 
     @OnTextChanged(R.id.main_phone)
     fun onPhoneChange() {
-        getPref(this).edit().putString(keyPhone, mPhone.text.toString()).apply()
+        // TODO Change this
+        // getPref(this).edit().putString(keyPhone, mPhone.text.toString()).apply()
     }
 }

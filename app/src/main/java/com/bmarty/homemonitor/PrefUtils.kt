@@ -1,12 +1,19 @@
 package com.bmarty.homemonitor
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 
 
-fun getPref(context: Context): SharedPreferences {
+private fun getPref(context: Context): SharedPreferences {
     return context.getSharedPreferences("default", Context.MODE_PRIVATE)
+}
+
+fun changeMode(context: Context, newMode: String) {
+    getPref(context).edit().putString(keyMode, newMode).apply()
+}
+
+fun resetMode(context: Context) {
+    getPref(context).edit().remove(keyMode).apply()
 }
 
 fun amIServer(context: Context): Boolean {
@@ -21,10 +28,10 @@ fun getDistantPhoneNumber(context: Context): String {
     return getPref(context).getString(keyPhone, defaultPhone)
 }
 
-fun saveLastChargerStatus(context: Context, status: String) {
-    getPref(context).edit().putString(keyLastChargerStatus, status)
+fun saveLastChargerStatus(context: Context, status: Int) {
+    getPref(context).edit().putInt(keyLastChargerStatus, status).apply()
 }
 
-fun getLastChargerStatus(context: Context): String {
-    return getPref(context).getString(keyLastChargerStatus, Intent.ACTION_POWER_DISCONNECTED)
+fun getLastChargerStatus(context: Context): Int {
+    return getPref(context).getInt(keyLastChargerStatus, -1)
 }

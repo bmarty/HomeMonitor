@@ -1,5 +1,6 @@
 package com.bmarty.homemonitor
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
@@ -46,7 +47,7 @@ abstract class SecondActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.menu_quit) {
-            getPref(this).edit().remove(keyMode).apply()
+            resetMode(this)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
             return true

@@ -3,27 +3,30 @@ package com.bmarty.homemonitor
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.RingtoneManager
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
-import android.media.RingtoneManager
-
 
 
 fun showChargerEventNotification(context: Context,
-                                 info: String) {
+                                 chargerStatus: Int) {
     val builder = NotificationCompat.Builder(context)
             .apply {
                 setSmallIcon(android.R.drawable.ic_dialog_alert)
 
-                mContentTitle = when (info) {
-                    Intent.ACTION_POWER_DISCONNECTED -> "Power failure"
-                    Intent.ACTION_POWER_CONNECTED -> "Power is back!"
+                mContentTitle = when (intToChargerIntent(chargerStatus)) {
+                    Intent.ACTION_POWER_DISCONNECTED -> "Power"
+                    Intent.ACTION_POWER_CONNECTED -> "Power"
+                    Intent.ACTION_BATTERY_LOW -> "Battery"
+                    Intent.ACTION_BATTERY_OKAY -> "Battery"
                     else -> "?"
                 }
 
-                mContentText = when (info) {
+                mContentText = when (intToChargerIntent(chargerStatus)) {
                     Intent.ACTION_POWER_DISCONNECTED -> "Power is shut down!"
                     Intent.ACTION_POWER_CONNECTED -> "Power is back!"
+                    Intent.ACTION_BATTERY_LOW -> "Battery is low"
+                    Intent.ACTION_BATTERY_OKAY -> "Battery is OK"
                     else -> "?"
                 }
 
