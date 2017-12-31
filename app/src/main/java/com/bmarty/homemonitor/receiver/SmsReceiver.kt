@@ -39,7 +39,7 @@ class SmsReceiver : BroadcastReceiver() {
                 val callerNumber = smsMessage.originatingAddress
 
                 when (message.type) {
-                    typeGetStatus -> sendCurrentStatus(context, callerNumber)
+                    typeGetStatus -> sendSms(context, createServerMessage(context, typeStatus), callerNumber)
                     typeGetCalled -> call(context, callerNumber)
                     else -> {
                         // Should not happen
