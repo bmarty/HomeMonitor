@@ -16,6 +16,10 @@ class SmsAckReceiver : BroadcastReceiver() {
         Log.w("TAG", "Sms ack received: " + intent.action)
 
         // Get Extra
+        val smsId = intent.getIntExtra("SMS_ID", -1)
+        Log.w("TAG", "Sms ack received. SMSId: " + smsId)
+
+        // TODO Update database
     }
 
 }

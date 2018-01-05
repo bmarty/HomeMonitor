@@ -3,7 +3,6 @@ package com.bmarty.homemonitor.data
 import com.bmarty.homemonitor.BuildConfig
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
 
 // Type from client
 val typeGetStatus = "GET STATUS"
@@ -13,7 +12,7 @@ val typeGetCalled = "GET CALLED"
 var typeCharger = "CHARGER"
 var typeStatus = "STATUS"
 
-class Message(
+class Message (
         @SerializedName("fc") val fromClient: Boolean,
         @SerializedName("t") val type: String,
 
@@ -48,4 +47,4 @@ class Message(
 
         // Version code
         @SerializedName("v") val versionCode: Int = BuildConfig.VERSION_CODE
-) : RealmObject()
+) //: RealmObject()

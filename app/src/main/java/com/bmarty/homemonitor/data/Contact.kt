@@ -5,4 +5,4 @@ import io.realm.annotations.PrimaryKey
 
 class Contact(@PrimaryKey var number: String,
                    var name: String,
-                   val isClient: Boolean): RealmObject()
+                   val isClient: Boolean) //: RealmObject()
