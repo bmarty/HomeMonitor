@@ -8,19 +8,17 @@ import com.bmarty.homemonitor.data.Message.Companion.typeGetStatus
 
 class ClientActivity : SecondActivity() {
 
-    override fun getLayoutRes(): Int {
-        return R.layout.activity_client
-    }
+    override fun getLayoutRes()= R.layout.activity_client
 
     // UI Event
 
     @OnClick(R.id.client_get_status)
     fun getStatus() {
-        sendSms(this, createClientMessage(typeGetStatus))
+        sendSms(this, realm, createClientMessage(typeGetStatus))
     }
 
     @OnClick(R.id.client_get_called)
     fun getCalled() {
-        sendSms(this, createClientMessage(typeGetCalled))
+        sendSms(this, realm, createClientMessage(typeGetCalled))
     }
 }

@@ -35,11 +35,7 @@ abstract class SecondActivity : AbstractActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(getLayoutRes())
-
-        ButterKnife.bind(this)
-
-        mPhone.setText(getDistantPhoneNumber(this))
+        mPhone.text = getDistantPhoneNumber(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -57,8 +53,6 @@ abstract class SecondActivity : AbstractActivity() {
 
         return super.onOptionsItemSelected(item)
     }
-
-    @LayoutRes abstract fun getLayoutRes(): Int
 
     // Bus event
 

@@ -30,6 +30,10 @@
             android:name=".ui.ServerActivity"
             android:label="Server"/>
 
+        <activity
+            android:name=".ui.HistoryActivity"
+            android:label="History"/>
+
         <receiver android:name=".receiver.ChargerReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>

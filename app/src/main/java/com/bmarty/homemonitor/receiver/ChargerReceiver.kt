@@ -10,6 +10,7 @@ import com.bmarty.homemonitor.createServerMessage
 import com.bmarty.homemonitor.data.Message.Companion.typeCharger
 import com.bmarty.homemonitor.saveLastChargerStatus
 import com.bmarty.homemonitor.sendSms
+import io.realm.Realm
 import org.greenrobot.eventbus.EventBus
 
 class ChargerReceiver : BroadcastReceiver() {
@@ -30,7 +31,9 @@ class ChargerReceiver : BroadcastReceiver() {
         EventBus.getDefault().post(ChargerEvent(intent.action))
 
         // Send SMS to the configured client
-        sendSms(context, createServerMessage(context, typeCharger))
+        val realm = Realm.getDefaultInstance()
+        sendSms(context, realm, createServerMessage(context, typeCharger))
+        realm.close()
     }
 }
 

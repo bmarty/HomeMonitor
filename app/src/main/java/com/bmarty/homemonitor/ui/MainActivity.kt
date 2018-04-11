@@ -16,12 +16,10 @@ class MainActivity : AbstractActivity() {
 
     @BindView(R.id.main_phone) lateinit var mPhone: EditText
 
+    override fun getLayoutRes() = R.layout.activity_main
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_main)
-
-        ButterKnife.bind(this)
 
         mPhone.setText(getDistantPhoneNumber(this))
 

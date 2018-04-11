@@ -17,7 +17,7 @@ class ServerActivity : SecondActivity() {
 
     @OnClick(R.id.server_send_status)
     fun sendStatus() {
-        sendSms(this, createServerMessage(this, typeStatus))
+        sendSms(this, realm, createServerMessage(this, typeStatus))
     }
 
     @OnClick(R.id.server_call)

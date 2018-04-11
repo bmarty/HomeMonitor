@@ -11,7 +11,9 @@ import com.bmarty.homemonitor.data.Message.Companion.typeCharger
 import com.bmarty.homemonitor.data.Message.Companion.typeGetCalled
 import com.bmarty.homemonitor.data.Message.Companion.typeGetStatus
 import com.bmarty.homemonitor.data.Message.Companion.typeStatus
+import com.bmarty.homemonitor.realm.storeMessage
 import com.google.gson.Gson
+import io.realm.Realm
 import org.greenrobot.eventbus.EventBus
 
 
@@ -38,12 +40,16 @@ class SmsReceiver : BroadcastReceiver() {
             // Try to parse message
             val message: Message = Gson().fromJson(smsMessage.messageBody, Message::class.java)
 
+            // Save message in DB
+            val realm = Realm.getDefaultInstance()
+            storeMessage(realm, message)
+
             if (amIServer(context) && message.fromClient) {
                 // We received a message form the client or any other number. Answer to the caller TODO if on the white list?
                 val callerNumber = smsMessage.originatingAddress
 
                 when (message.type) {
-                    typeGetStatus -> sendSms(context, createServerMessage(context, typeStatus), callerNumber)
+                    typeGetStatus -> sendSms(context, realm, createServerMessage(context, typeStatus), callerNumber)
                     typeGetCalled -> call(context, callerNumber)
                     else -> {
                         // Should not happen
@@ -61,6 +67,8 @@ class SmsReceiver : BroadcastReceiver() {
                     }
                 }
             }
+
+            realm.close()
         }
     }
 

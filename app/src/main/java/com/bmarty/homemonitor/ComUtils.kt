@@ -6,7 +6,9 @@ import android.content.Intent
 import android.net.Uri
 import android.telephony.SmsManager
 import com.bmarty.homemonitor.data.Message
+import com.bmarty.homemonitor.realm.storeMessage
 import com.google.gson.Gson
+import io.realm.Realm
 
 
 fun call(context: Context,
@@ -17,8 +19,12 @@ fun call(context: Context,
 }
 
 fun sendSms(context: Context,
+            realm: Realm,
             message: Message,
             number: String = getDistantPhoneNumber(context)) {
+    // Store in Realm
+    storeMessage(realm, message)
+
     val sentIntent = Intent("action.sms.sent")
     sentIntent.putExtra("SMS_ID", 1)
     var sentPendingIntent = PendingIntent.getBroadcast(context, 0, sentIntent, 0)
