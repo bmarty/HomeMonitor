@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="history_margin_small">4dp</dimen>
+    <dimen name="history_margin_big">30dp</dimen>
+
+</resources>

@@ -13,11 +13,13 @@ fun storeMessage(realm: Realm, message: Message) {
         message.id = nextId + 1
     }
 
-    realm.executeTransaction({
+    realm.executeTransaction {
         it.copyToRealmOrUpdate(message)
-    })
+    }
 }
 
 fun clearMessages(realm: Realm) {
-    realm.where(Message::class.java).findAll().deleteAllFromRealm()
+    realm.executeTransaction {
+        it.where(Message::class.java).findAll().deleteAllFromRealm()
+    }
 }
