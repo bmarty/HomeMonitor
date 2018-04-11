@@ -2,16 +2,16 @@ package com.bmarty.homemonitor.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import butterknife.BindView
-import butterknife.ButterKnife
-import com.bmarty.homemonitor.*
+import butterknife.OnClick
+import com.bmarty.homemonitor.R
 import com.bmarty.homemonitor.data.ChargerEvent
 import com.bmarty.homemonitor.data.SmsEvent
+import com.bmarty.homemonitor.getDistantPhoneNumber
+import com.bmarty.homemonitor.resetMode
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -19,8 +19,10 @@ import org.greenrobot.eventbus.ThreadMode
 
 abstract class SecondActivity : AbstractActivity() {
 
-    @BindView(R.id.second_event) lateinit var mEvent: TextView
-    @BindView(R.id.second_phone) lateinit var mPhone: TextView
+    @BindView(R.id.second_event)
+    lateinit var mEvent: TextView
+    @BindView(R.id.second_phone)
+    lateinit var mPhone: TextView
 
     public override fun onStart() {
         super.onStart()
@@ -64,5 +66,11 @@ abstract class SecondActivity : AbstractActivity() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: SmsEvent) {
         mEvent.text = "Sms: " + event.intentAction + " " + event.smsContent
+    }
+
+    // UI events
+    @OnClick(R.id.second_history)
+    internal fun historyClicked() {
+        startActivity(Intent(this, HistoryActivity::class.java))
     }
 }

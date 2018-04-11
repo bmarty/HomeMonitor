@@ -6,16 +6,18 @@ import io.realm.Realm
 // TODO Store date?
 fun storeMessage(realm: Realm, message: Message) {
     // Check that message has an Id
-    if(message.id == null) {
+    if (message.id == null) {
         // Find next id
         val nextId = realm.where(Message::class.java).count()
 
         message.id = nextId + 1
     }
 
-    realm.copyToRealmOrUpdate(message)
+    realm.executeTransaction({
+        it.copyToRealmOrUpdate(message)
+    })
 }
 
-fun clearMessages(realm: Realm){
+fun clearMessages(realm: Realm) {
     realm.where(Message::class.java).findAll().deleteAllFromRealm()
 }
