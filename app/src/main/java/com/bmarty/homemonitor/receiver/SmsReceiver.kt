@@ -7,6 +7,10 @@ import android.provider.Telephony
 import android.util.Log
 import com.bmarty.homemonitor.*
 import com.bmarty.homemonitor.data.*
+import com.bmarty.homemonitor.data.Message.Companion.typeCharger
+import com.bmarty.homemonitor.data.Message.Companion.typeGetCalled
+import com.bmarty.homemonitor.data.Message.Companion.typeGetStatus
+import com.bmarty.homemonitor.data.Message.Companion.typeStatus
 import com.google.gson.Gson
 import org.greenrobot.eventbus.EventBus
 

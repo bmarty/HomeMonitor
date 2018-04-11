@@ -3,8 +3,8 @@ package com.bmarty.homemonitor.ui
 import butterknife.OnClick
 import com.bmarty.homemonitor.R
 import com.bmarty.homemonitor.createServerMessage
-import com.bmarty.homemonitor.data.typeStatus
 import com.bmarty.homemonitor.call
+import com.bmarty.homemonitor.data.Message.Companion.typeStatus
 import com.bmarty.homemonitor.sendSms
 
 class ServerActivity : SecondActivity() {

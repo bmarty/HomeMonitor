@@ -3,8 +3,8 @@ package com.bmarty.homemonitor.ui
 import butterknife.OnClick
 import com.bmarty.homemonitor.*
 import com.bmarty.homemonitor.createClientMessage
-import com.bmarty.homemonitor.data.typeGetCalled
-import com.bmarty.homemonitor.data.typeGetStatus
+import com.bmarty.homemonitor.data.Message.Companion.typeGetCalled
+import com.bmarty.homemonitor.data.Message.Companion.typeGetStatus
 
 class ClientActivity : SecondActivity() {
 

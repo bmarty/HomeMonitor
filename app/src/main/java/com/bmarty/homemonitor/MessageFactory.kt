@@ -9,23 +9,19 @@ import com.bmarty.homemonitor.data.Message
 
 
 fun createClientMessage(type: String): Message {
-    return Message(true,
-            type,
-            null,
-            null,
-            null,
-            null,
-            null)
+    return Message().apply {
+        fromClient = true
+        this.type = type
+    }
 }
 
 fun createServerMessage(context: Context, type: String): Message {
-    val message = Message(false,
-            type,
-            getLastChargerStatus(context),
-            null,
-            -1,
-            null,
-            null)
+    val message = Message().apply {
+        fromClient = false
+        this.type = type
+    }
+
+    message.chargerStatus = getLastChargerStatus(context)
 
     // Battery status
     val intent: Intent = context.applicationContext.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))

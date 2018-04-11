@@ -7,7 +7,7 @@ import android.util.Log
 import com.bmarty.homemonitor.amIServer
 import com.bmarty.homemonitor.data.ChargerEvent
 import com.bmarty.homemonitor.createServerMessage
-import com.bmarty.homemonitor.data.typeCharger
+import com.bmarty.homemonitor.data.Message.Companion.typeCharger
 import com.bmarty.homemonitor.saveLastChargerStatus
 import com.bmarty.homemonitor.sendSms
 import org.greenrobot.eventbus.EventBus
