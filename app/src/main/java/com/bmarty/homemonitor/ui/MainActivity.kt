@@ -3,10 +3,8 @@ package com.bmarty.homemonitor.ui
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
 import butterknife.BindView
-import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.OnTextChanged
 import com.bmarty.homemonitor.*
@@ -14,7 +12,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 
 class MainActivity : AbstractActivity() {
 
-    @BindView(R.id.main_phone) lateinit var mPhone: EditText
+    @BindView(R.id.main_phone)
+    lateinit var mPhone: EditText
 
     override fun getLayoutRes() = R.layout.activity_main
 
@@ -60,7 +59,7 @@ class MainActivity : AbstractActivity() {
 
     @OnClick(R.id.main_start_server)
     fun startServer() {
-        changeMode(this, keyModeClientStarted)
+        changeMode(this, keyModeServerStarted)
         redirect()
     }
 

@@ -9,6 +9,10 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.bmarty.homemonitor.R
 import com.bmarty.homemonitor.data.Message
+import com.bmarty.homemonitor.data.Message.Companion.typeCharger
+import com.bmarty.homemonitor.data.Message.Companion.typeGetCalled
+import com.bmarty.homemonitor.data.Message.Companion.typeGetStatus
+import com.bmarty.homemonitor.data.Message.Companion.typeStatus
 
 class HistoryItem(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -27,26 +31,43 @@ class HistoryItem(itemView: View) :
     @BindView(R.id.item_history_title)
     lateinit var titleText: TextView
 
+    private val containerLayoutParams: ViewGroup.MarginLayoutParams
+
     init {
         ButterKnife.bind(this, itemView)
+
+        containerLayoutParams = container.layoutParams as ViewGroup.MarginLayoutParams
     }
 
     fun bind(message: Message) {
         message.let {
-            titleText.text = it.type
+            if (it.fromClient) {
+                container.setBackgroundResource(R.drawable.item_history_background_client)
 
-            (container.layoutParams as ViewGroup.MarginLayoutParams).apply {
-                if (it.fromClient) {
-                    marginStart = marginSmall
-                    marginEnd = marginBig
-                } else {
-                    marginStart = marginBig
-                    marginEnd = marginStart
+                containerLayoutParams.marginStart = marginSmall
+                containerLayoutParams.marginEnd = marginBig
+
+                // Type from client
+                titleText.text = when (it.type) {
+                    typeGetStatus -> "Give me your status please."
+                    typeGetCalled -> "Call me back please."
+                    else -> "?"
+                }
+
+            } else {
+                container.setBackgroundResource(R.drawable.item_history_background_server)
+
+                containerLayoutParams.marginStart = marginBig
+                containerLayoutParams.marginEnd = marginSmall
+
+                // Type from server
+                titleText.text = when (it.type) {
+                    typeCharger -> "CHARGER"
+                    typeStatus -> "STATUS"
+                    else -> "?"
                 }
             }
         }
-
-
     }
 
 }

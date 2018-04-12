@@ -44,6 +44,9 @@ class HistoryActivity : AbstractActivity() {
                 .subscribe(
                         {
                             historyAdapter.setData(it.collection)
+
+                            // TODO Do not scroll if user has already scrolled
+                            listView.scrollToPosition(it.collection.size - 1)
                         },
                         {
                             Log.e("TAG", "Error: ", it)

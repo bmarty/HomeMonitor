@@ -11,7 +11,7 @@ import io.realm.rx.CollectionChange
 fun getMessages(realm: Realm): Observable<CollectionChange<RealmResults<Message>>> {
     return realm
             .where(Message::class.java)
-            .sort("id", Sort.DESCENDING)
+            .sort("id", Sort.ASCENDING)
             .findAllAsync()
             .asChangesetObservable()
 }

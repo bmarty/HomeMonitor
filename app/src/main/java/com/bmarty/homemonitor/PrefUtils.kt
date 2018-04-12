@@ -3,16 +3,16 @@ package com.bmarty.homemonitor
 import android.content.Context
 import android.content.SharedPreferences
 
-val keyPhone = "KEY_PHONE"
-val defaultPhone = "0651547677"
+const val keyPhone = "KEY_PHONE"
+const val defaultPhone = "0651547677"
 
-val keyMode = "KEY_MODE"
+const val keyMode = "KEY_MODE"
 
-val keyModeStopped = "STOPPED"
-val keyModeServerStarted = "SERVER_STARTED"
-val keyModeClientStarted = "CLIENT_STARTED"
+const val keyModeStopped = "STOPPED"
+const val keyModeServerStarted = "SERVER_STARTED"
+const val keyModeClientStarted = "CLIENT_STARTED"
 
-val keyLastChargerStatus = "KEY_LAST_CHARGER_STATUS"
+const val keyLastChargerStatus = "KEY_LAST_CHARGER_STATUS"
 
 private fun getPref(context: Context): SharedPreferences {
     return context.getSharedPreferences("default", Context.MODE_PRIVATE)

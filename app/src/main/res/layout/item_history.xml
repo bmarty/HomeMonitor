@@ -7,8 +7,8 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp"
     android:layout_marginTop="4dp"
-    android:background="#500F4400"
     android:padding="4dp"
+    tools:background="@drawable/item_history_background_server"
     tools:layout_marginEnd="@dimen/history_margin_big"
     tools:layout_marginStart="@dimen/history_margin_small">
 
