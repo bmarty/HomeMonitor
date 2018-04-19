@@ -10,7 +10,9 @@ import com.bmarty.homemonitor.realm.storeMessage
 import com.google.gson.Gson
 import io.realm.Realm
 
-
+/**
+ * Call a phone number
+ */
 fun call(context: Context,
          number: String = getDistantPhoneNumber(context)) {
     val callIntent = Intent(Intent.ACTION_CALL)
